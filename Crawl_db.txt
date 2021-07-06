@@ -1,0 +1,22 @@
+CREATE DATABASE craw_data_vnexpress;
+
+CREATE TABLE `categories` (
+  `idcategories` bigint NOT NULL AUTO_INCREMENT,
+  `link_categories` text,
+  PRIMARY KEY (`idcategories`),
+  UNIQUE KEY `idcategories_UNIQUE` (`idcategories`)
+);
+
+CREATE TABLE `contents` (
+  `idcontent` bigint NOT NULL AUTO_INCREMENT,
+  `link_article` text,
+  `title` text,
+  `content` longtext,
+  `author` varchar(255) DEFAULT NULL,
+  `date_created` varchar(255) DEFAULT NULL,
+  `idcategories` bigint DEFAULT NULL,
+  PRIMARY KEY (`idcontent`),
+  UNIQUE KEY `idcontent_UNIQUE` (`idcontent`),
+  KEY `idcategories` (`idcategories`),
+  CONSTRAINT `contents_ibfk_1` FOREIGN KEY (`idcategories`) REFERENCES `categories` (`idcategories`)
+);
